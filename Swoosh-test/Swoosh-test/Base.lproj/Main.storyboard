@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Swoosh_test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="Swoosh_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bQN-gf-K59" kind="show" id="ieh-oD-bao"/>
+                                    <segue destination="bQN-gf-K59" kind="show" identifier="welcomeToLeaguesegue" id="ieh-oD-bao"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swooshLogo" translatesAutoresizingMaskIntoConstraints="NO" id="95d-ZJ-tj5">
@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="20" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--League View Controller-->
         <scene sceneID="14h-mv-pw5">
             <objects>
-                <viewController id="bQN-gf-K59" sceneMemberID="viewController">
+                <viewController id="bQN-gf-K59" customClass="LeagueViewController" customModule="Swoosh_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ehs-FX-voK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +121,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-5C-WYt">
+                                <rect key="frame" x="10" y="30" width="29" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Dt-JX-JzB"/>
+                                    <constraint firstAttribute="width" constant="30" id="cji-wk-qpL"/>
+                                </constraints>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <segue destination="SNR-40-poF" kind="unwind" unwindAction="unwindSegueWelcomeVCWithSegue:" id="IEA-6e-lkY"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVA-ni-tLP" customClass="BorderButton" customModule="Swoosh_test" customModuleProvider="target">
                                 <rect key="frame" x="20" y="597" width="335" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.3985980308" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,6 +142,9 @@
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onNextClick:" destination="bQN-gf-K59" eventType="touchUpInside" id="0wV-7E-uB4"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2xF-0V-TkE">
                                 <rect key="frame" x="20" y="195" width="335" height="200"/>
@@ -167,17 +181,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQX-fX-q93">
-                                <rect key="frame" x="16" y="10" width="29" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="PIa-fE-heA"/>
-                                    <constraint firstAttribute="height" constant="30" id="u1p-IQ-R3z"/>
-                                </constraints>
-                                <state key="normal" image="backButton"/>
-                                <connections>
-                                    <segue destination="SNR-40-poF" kind="unwind" unwindAction="unwindSegueWithSegue:" id="xOI-BN-KwF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -188,6 +191,7 @@
                             <constraint firstItem="kvv-gJ-Zff" firstAttribute="trailing" secondItem="0h9-eO-V58" secondAttribute="trailing" id="Czw-EL-DEK"/>
                             <constraint firstItem="kvv-gJ-Zff" firstAttribute="bottom" secondItem="0h9-eO-V58" secondAttribute="bottom" id="GrX-if-Gnc"/>
                             <constraint firstItem="kvv-gJ-Zff" firstAttribute="top" secondItem="ehs-FX-voK" secondAttribute="top" id="KHu-tx-KGZ"/>
+                            <constraint firstItem="M3y-5C-WYt" firstAttribute="top" secondItem="0h9-eO-V58" secondAttribute="top" constant="10" id="P1G-bx-YXm"/>
                             <constraint firstItem="0h9-eO-V58" firstAttribute="trailing" secondItem="NVA-ni-tLP" secondAttribute="trailing" constant="20" id="Rod-ww-Acv"/>
                             <constraint firstItem="0h9-eO-V58" firstAttribute="trailing" secondItem="2xF-0V-TkE" secondAttribute="trailing" constant="20" id="UNv-ba-d3X"/>
                             <constraint firstItem="2xF-0V-TkE" firstAttribute="leading" secondItem="0h9-eO-V58" secondAttribute="leading" constant="20" id="a4w-z4-H3i"/>
@@ -195,20 +199,22 @@
                             <constraint firstItem="QLq-fX-he2" firstAttribute="top" secondItem="0h9-eO-V58" secondAttribute="top" constant="20" id="kes-5r-BQN"/>
                             <constraint firstItem="0h9-eO-V58" firstAttribute="bottom" secondItem="NVA-ni-tLP" secondAttribute="bottom" constant="20" id="mzJ-Pn-3Hk"/>
                             <constraint firstItem="0h9-eO-V58" firstAttribute="trailing" secondItem="QLq-fX-he2" secondAttribute="trailing" id="nPO-1v-LTJ"/>
-                            <constraint firstItem="SQX-fX-q93" firstAttribute="top" secondItem="ehs-FX-voK" secondAttribute="top" constant="10" id="o6P-L0-7tv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0h9-eO-V58"/>
                     </view>
+                    <connections>
+                        <segue destination="0cv-Hi-CnO" kind="show" identifier="leagueToskillSegue" id="OxA-js-81L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9L-Jz-Vdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SNR-40-poF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="821.60000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="772" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Skill View Controller-->
         <scene sceneID="CJM-Xl-x7Y">
             <objects>
-                <viewController id="0cv-Hi-CnO" sceneMemberID="viewController">
+                <viewController id="0cv-Hi-CnO" customClass="SkillViewController" customModule="Swoosh_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MTR-eM-R6e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,6 +275,17 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-gs-lci">
+                                <rect key="frame" x="29" y="30" width="29" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="0kX-Mg-8ux"/>
+                                    <constraint firstAttribute="height" constant="30" id="9fR-MX-zpK"/>
+                                </constraints>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <segue destination="zuj-wY-jQ3" kind="unwind" unwindAction="unwindSegueLVCWithSegue:" id="N3e-ns-SJJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -285,11 +302,13 @@
                             <constraint firstItem="ixy-MB-M0d" firstAttribute="trailing" secondItem="G2u-dH-8xH" secondAttribute="trailing" constant="20" id="rI3-R9-gLt"/>
                             <constraint firstItem="G2u-dH-8xH" firstAttribute="leading" secondItem="ixy-MB-M0d" secondAttribute="leading" constant="20" id="rou-Rb-pHF"/>
                             <constraint firstItem="ixy-MB-M0d" firstAttribute="trailing" secondItem="Z03-ze-Pkg" secondAttribute="trailing" constant="20" id="sWO-5W-lZe"/>
+                            <constraint firstItem="Qnz-gs-lci" firstAttribute="top" secondItem="ixy-MB-M0d" secondAttribute="top" constant="10" id="vnb-uy-nCE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ixy-MB-M0d"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PzU-aR-ned" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zuj-wY-jQ3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1533.5999999999999" y="133.5832083958021"/>
         </scene>
